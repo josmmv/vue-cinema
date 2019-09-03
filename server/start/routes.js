@@ -16,6 +16,19 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+Route.group(() => { 
+  Route.post('login', 'AuthController.login')
+  Route.post('register', 'AuthController.register')
+  Route.put('profile', 'AuthController.profile').middleware(['auth:jwt'])
+
+  Route.get('cinema:id', 'CinemaController.showCinema')
+  Route.get('cinema', 'CinemaController.indexCinemas')
+  Route.get('genres', 'CinemaController.indexGenres')
+
+  Route.get('movies/:id/byCinema', 'MovieController.byCinema')
+  Route.get('movies/:id/byMovie', 'MovieController.byMovie')
+
+  Router.post('booking', 'BookingController.create').middleware(['auth:jwt'])
+  Route.get('bookings/last', 'BookingController.last').middleware(['auth:jwt'])
+  Route.get('bookings/all', 'BookingController.all').middleware(['auth:jwt'])
+}).prefix('api')

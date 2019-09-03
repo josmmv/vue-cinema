@@ -28,7 +28,7 @@ Route.group(() => {
   Route.get('movies/:id/byCinema', 'MovieController.byCinema')
   Route.get('movies/:id/byMovie', 'MovieController.byMovie')
 
-  Router.post('booking', 'BookingController.create').middleware(['auth:jwt'])
+  Route.post('booking', 'BookingController.create').middleware(['auth:jwt'])
   Route.get('bookings/last', 'BookingController.last').middleware(['auth:jwt'])
   Route.get('bookings/all', 'BookingController.all').middleware(['auth:jwt'])
 }).prefix('api')

@@ -39,9 +39,9 @@ Factory.blueprint('App/Models/Cinema', async faker => {
   const cinema_name = faker.company();
   return {
     cinema_name: cinema_name,
-    cinema_screenshot: 'http://fakeimg.pl/600x400/?text=${cinema_name}',
-    ciname_address: faker.address(),
-    ciname_phone: faker.phone(),
+    cinema_screenshot: `http://fakeimg.pl/600x400/?text=${cinema_name}`,
+    cinema_address: faker.address(),
+    cinema_phone: faker.phone(),
     cinema_seat_capacity: faker.integer({min: 300, max: 1000}),
     cinema_details: faker.sentence({words: 30}),
   }
@@ -51,9 +51,9 @@ Factory.blueprint('App/Models/Room', async (faker, i, data) => {
   const rows = faker.integer({min: 5, max: 20});
   return {
     cinema_id: data.cinema_id,
-    room_rows: rows,
-    room_seats: rows * 10,
-    room_number: faker.integer({min: 1, max: 20}),
+    rooms_rows: rows,
+    rooms_seats: rows * 10,
+    rooms_number: faker.integer({min: 1, max: 20}),
   }
 });
 
@@ -62,7 +62,7 @@ Factory.blueprint('App/Models/Movie', async faker => {
   return {
     movie_name: movie_name,
     movie_director: faker.name(),
-    movie_screenshot: 'http://fakeimg.pl/600x400/?text=${movie_name}',
+    movie_screenshot: `http://fakeimg.pl/600x400/?text=${movie_name}`,
     movie_synopsis: faker.sentence({words: 50}),
     created_at: faker.date(),
   }
@@ -94,7 +94,7 @@ Factory.blueprint('App/Models/Booking', async (faker, i, data) => {
   return {
     customer_id: data.customer_id,
     movie_showing_time_id: data.movie_showing_time_id,
-    booking_made_data: new Date(),
+    booking_made_date: new Date(),
     booking_seat_count: 1,
   }
 });

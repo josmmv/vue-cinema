@@ -21,7 +21,7 @@ Route.group(() => {
   Route.post('register', 'AuthController.register')
   Route.put('profile', 'AuthController.profile').middleware(['auth:jwt'])
 
-  Route.get('cinema:id', 'CinemaController.showCinema')
+  Route.get('cinema/:id', 'CinemaController.showCinema')
   Route.get('cinema', 'CinemaController.indexCinemas')
   Route.get('genres', 'CinemaController.indexGenres')
 

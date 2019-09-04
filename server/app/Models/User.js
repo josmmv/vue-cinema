@@ -6,6 +6,8 @@ const Model = use('Model')
 /** @type {import('@adonisjs/framework/src/Hash')} */
 const Hash = use('Hash')
 
+const Customer = use('App/Models/Customer')
+
 class User extends Model {
   static boot () {
     super.boot()
@@ -18,6 +20,14 @@ class User extends Model {
       if (userInstance.dirty.password) {
         userInstance.password = await Hash.make(userInstance.password)
       }
+    })
+
+    /*
+      * Create new customer after create an user
+      */
+    this.addHook('afterCreate', async (userInstance) => {
+      let customer = new Customer()
+      userInstance.customer().save(customer);
     })
   }
 

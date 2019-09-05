@@ -69,11 +69,17 @@ Factory.blueprint('App/Models/Movie', async faker => {
 });
 
 Factory.blueprint('App/Models/MovieShowing', async (faker, i, data) => {
+  /*Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  }
+  let d = new Date()*/
   return {
     cinema_id: data.cinema_id,
     movie_id: data.movie_id,
     room_id: data.movie_id,
-    movie_show_date: new Date(),
+    movie_show_date: new Date() //d.addDays(5),
   }
 });
 

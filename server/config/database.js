@@ -20,21 +20,23 @@ module.exports = {
 
   /*
   |--------------------------------------------------------------------------
-  | Sqlite
+  | mssql
   |--------------------------------------------------------------------------
   |
-  | Sqlite is a flat file database and can be good choice under development
-  | environment.
+  | mssql is the Microsoft SQL Server client for Node.js.
   |
-  | npm i --save sqlite3
+  | npm i --save mssql
   |
   */
-  sqlite: {
-    client: 'sqlite3',
+  mssql: {
+    client: 'mssql',
     connection: {
-      filename: Helpers.databasePath(`${Env.get('DB_DATABASE', 'api-vue-cinema')}.sqlite`)
-    },
-    useNullAsDefault: true
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE
+    }
   },
 
   /*
@@ -51,7 +53,7 @@ module.exports = {
     client: 'mysql',
     connection: {
       host: Env.get('DB_HOST', 'localhost'),
-      port: Env.get('DB_PORT', ''),
+      port: Env.get('DB_PORT', '3306'),
       user: Env.get('DB_USER', 'root'),
       password: Env.get('DB_PASSWORD', ''),
       database: Env.get('DB_DATABASE', 'api-vue-cinema')
